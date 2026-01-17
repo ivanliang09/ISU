@@ -270,8 +270,8 @@ public class Main {
                         System.out.println("Question removed successfully!");
                     }
                 }
-            } else if (choice == 3) { // Exit function
-                break;
+            } else {
+                break; // Exit function
             }
         }
     }
