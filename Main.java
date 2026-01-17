@@ -62,23 +62,21 @@ public class Main {
             int choice = 0;
             boolean validMenu = false;
 
-
             while (!validMenu) { // Error handler
                 System.out.println("Welcome to the G1 Road Rules Application!"); // Welcome the user
                 System.out.println("1. Write a G1 Test"); // Choice 1
                 System.out.println("2. Login as admin"); // Choice 2
                 System.out.println("3. Exit"); // Choice 3
-                String input = sc.nextLine();
-
-                if (input.length() == 1 && input.charAt(0) >= '1' && input.charAt(0) <= '3') {
-                    choice = input.charAt(0);
+                choice = sc.nextInt();
+                sc.nextLine(); // Consumes newline
+                if (choice == 1 || choice == 2 || choice == 3) {
                     validMenu = true;
                 } else {
                     System.out.println("Please enter a valid option!");
                 }
             }
 
-            if (choice == '1') {
+            if (choice == 1) {
 
                 ArrayList<String> tempA = new ArrayList<>(questions); // Create temporary duplicate ArrayLists
                 ArrayList<Character> tempAnsA = new ArrayList<>(answers);
@@ -171,7 +169,7 @@ public class Main {
                         System.out.println("FAIL\n");
                     }
                 }
-            } else if (choice == '2') { // Administrator panel
+            } else if (choice == 2) { // Administrator panel
                 System.out.println("Enter password:");
                 if (!sc.nextLine().equals("password")) { // Password is "password"
                     System.out.println("Incorrect password.");
@@ -198,6 +196,8 @@ public class Main {
                         System.out.println("For example: What should you do at a go light?\\\\na. Stop\\\\nb. Go\\\\nc. Wait\\\\nd. Honk"); // Demonstrates how a question should be added
 
                         String newQuestion = sc.nextLine();
+                        sc.nextLine();
+
                         System.out.println("Choose which part you want to add it to A/B: ");
                         String answer = sc.nextLine().toUpperCase();
                         if (answer.equals("A")) {
@@ -270,7 +270,7 @@ public class Main {
                         System.out.println("Question removed successfully!");
                     }
                 }
-            } else if (choice == '3') { // Exit function
+            } else if (choice == 3) { // Exit function
                 break;
             }
         }
