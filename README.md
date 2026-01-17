@@ -27,7 +27,9 @@
 - Gets the final score in percentage
 ### **newQuestion & newAnswer**
 - Gets the new question and answer before adding it to the ArrayList
-### **input**
+### **answer**
+- Gets the user input when choosing part A or B for removing/adding questions
+### **input & secondInput**
 - Gets the user input for the question they want to remove
 
 ## **Overall Logic:**
