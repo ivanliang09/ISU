@@ -1,7 +1,7 @@
 // NAME: Ivan Liang
 
-import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -59,24 +59,24 @@ public class Main {
 
         while (true) {
 
-            int choice = 0;
+            String choice = "";
             boolean validMenu = false;
 
             while (!validMenu) { // Error handler
+                
                 System.out.println("Welcome to the G1 Road Rules Application!"); // Welcome the user
                 System.out.println("1. Write a G1 Test"); // Choice 1
                 System.out.println("2. Login as admin"); // Choice 2
                 System.out.println("3. Exit"); // Choice 3
-                choice = sc.nextInt();
-                sc.nextLine(); // Consumes newline
-                if (choice == 1 || choice == 2 || choice == 3) {
+                choice = sc.nextLine();
+                if (choice.equals("1") || choice.equals("2") || choice.equals("3")) {
                     validMenu = true;
                 } else {
                     System.out.println("Please enter a valid option!");
                 }
             }
 
-            if (choice == 1) {
+            if (choice.equals("1")) {
 
                 ArrayList<String> tempA = new ArrayList<>(questions); // Create temporary duplicate ArrayLists
                 ArrayList<Character> tempAnsA = new ArrayList<>(answers);
@@ -169,7 +169,7 @@ public class Main {
                         System.out.println("FAIL\n");
                     }
                 }
-            } else if (choice == 2) { // Administrator panel
+            } else if (choice.equals("2")) { // Administrator panel
                 System.out.println("Enter password:");
                 if (!sc.nextLine().equals("password")) { // Password is "password"
                     System.out.println("Incorrect password.");
@@ -192,34 +192,75 @@ public class Main {
 
 
                     if (adminChoice == 'A') {
-                        System.out.println("Enter the full question with multiple choice options (A-D). Use \"\\\\n\" to separate each option:"); // Asks user to input the question
-                        System.out.println("For example: What should you do at a go light?\\\\na. Stop\\\\nb. Go\\\\nc. Wait\\\\nd. Honk"); // Demonstrates how a question should be added
+                        System.out.println("There will be 4 multiple choice options. Please prepare 4 different answers.");
+                        System.out.println("Enter the full question: "); // Asks user to input the question
 
                         String newQuestion = sc.nextLine();
-                        sc.nextLine();
 
-                        System.out.println("Choose which part you want to add it to A/B: ");
-                        String answer = sc.nextLine().toUpperCase();
-                        if (answer.equals("A")) {
-                            questions.add(newQuestion); // Question is added to the end of the questions Arraylist
+                        System.out.println("Enter option A");
+                        String optionA = sc.nextLine();
+                        System.out.println("Enter option B");
+                        String optionB = sc.nextLine();
+                        System.out.println("Enter option C");
+                        String optionC = sc.nextLine();
+                        System.out.println("Enter option D");
+                        String optionD = sc.nextLine();
 
-                            System.out.println("Enter the correct answer (A-D) only:");
-                            char newAnswer = sc.nextLine().toUpperCase().charAt(0); // Forces a capital letter
-                            answers.add(newAnswer); // Answer is also added to the end of the answers ArrayList
+                        String completedQuestion = (newQuestion + "\na. " + optionA + "\nb. " + optionB + "\nc. " + optionC + "\nd. " + optionD); // Concatenates everything into the full question
 
-                            System.out.println("Question added successfully!");
-                        } else if (answer.equals("B")) { // Same as the part above
-                            moreQuestions.add(newQuestion);
 
-                            System.out.println("Enter the correct answer (A-D) only:");
-                            char newAnswer = sc.nextLine().toUpperCase().charAt(0);
-                            moreAnswers.add(newAnswer);
 
-                            System.out.println("Question added successfully!");
-                        } else {
-                            System.out.println("Invalid");
+                        char user = ' ';
+                        boolean anotherValid = false;
+
+                        while (!anotherValid) { // Error handler
+                            System.out.println("Choose which part you want to add it to A/B: ");
+                            String ans = sc.nextLine().toUpperCase();
+                            if (ans.length() == 1 && ans.charAt(0) >= 'A' && ans.charAt(0) <= 'B') {
+                                user = ans.charAt(0);
+                                anotherValid = true;
+                            } else {
+                                System.out.println("Please enter a valid option!");
+                            }
                         }
 
+                        if (user == 'A') {
+                            questions.add(completedQuestion); // Question is added to the end of the questions Arraylist
+                            char anotherUser = ' ';
+                            boolean anotherValidChecker = false;
+
+                            while (!anotherValidChecker) { // Error handler
+                                System.out.println("Enter the correct answer (A-D) only:");
+                                String ans = sc.nextLine().toUpperCase();
+                                if (ans.length() == 1 && ans.charAt(0) >= 'A' && ans.charAt(0) <= 'D') {
+                                    anotherUser = ans.charAt(0);
+                                    anotherValidChecker = true;
+                                } else {
+                                    System.out.println("Please enter a valid option!");
+                                }
+                            }
+                            answers.add(anotherUser); // Answer is also added to the end of the answers ArrayList
+
+                            System.out.println("Question added successfully!");
+                        } else { // Same as the part above
+                            moreQuestions.add(completedQuestion);
+
+                            char anotherUser = ' ';
+                            boolean anotherValidChecker = false;
+
+                            while (!anotherValidChecker) { // Error handler
+                                System.out.println("Enter the correct answer (A-D) only:");
+                                String ans = sc.nextLine().toUpperCase();
+                                if (ans.length() == 1 && ans.charAt(0) >= 'A' && ans.charAt(0) <= 'D') {
+                                    anotherUser = ans.charAt(0);
+                                    anotherValidChecker = true;
+                                } else {
+                                    System.out.println("Please enter a valid option!");
+                                }
+                            }
+                            moreAnswers.add(anotherUser);
+                            System.out.println("Question added successfully!");
+                        }
                     } else {
                         char user = ' ';
                         boolean validChecker = false;
