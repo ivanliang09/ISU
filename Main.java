@@ -128,6 +128,7 @@ public class Main {
                         System.out.println("FAIL\n");
                     }
                 }
+                
             } else if (choice == 2) { // Administrator panel
                 System.out.println("Enter password:");
                 if (!sc.nextLine().equals("password")) { // Password is "password"
@@ -136,6 +137,7 @@ public class Main {
                     System.out.println("a. Add question");
                     System.out.println("b. Remove question");
                     String adminChoice = sc.nextLine();
+                    
                     if (adminChoice.equals("a")) {
                         System.out.println("Enter the full question with multiple choice options (A-D). Use \"\\\\n\" to separate each option:"); // Asks user to input the question
                         System.out.println("For example: What should you do at a go light?\\\\na. Stop\\\\nb. Go\\\\nc. Wait\\\\nd. Honk"); // Demonstrates how a question should be added
@@ -143,6 +145,7 @@ public class Main {
                         String newQuestion = sc.nextLine();
                         System.out.println("Choose which part you want to add it to A/B: ");
                         String answer = sc.nextLine().toUpperCase();
+                        
                         if (answer.equals("A")) {
                             questions.add(newQuestion); // Question is added to the end of the questions Arraylist
 
@@ -164,6 +167,7 @@ public class Main {
                         }
 
                     }
+                    
                     if (adminChoice.equals("b")) { // Removing a question
                         System.out.println("Enter the part you want to remove a question in A/B:");
                         String answer = sc.nextLine().toUpperCase();
