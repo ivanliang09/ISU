@@ -63,7 +63,7 @@ public class Main {
             boolean validMenu = false;
 
             while (!validMenu) { // Error handler
-                
+
                 System.out.println("Welcome to the G1 Road Rules Application!"); // Welcome the user
                 System.out.println("1. Write a G1 Test"); // Choice 1
                 System.out.println("2. Login as admin"); // Choice 2
@@ -206,7 +206,7 @@ public class Main {
                         System.out.println("Enter option D");
                         String optionD = sc.nextLine();
 
-                        String completedQuestion = (newQuestion + "\na. " + optionA + "\nb. " + optionB + "\nc. " + optionC + "\nd. " + optionD); // Concatenates everything into the full question
+                        String completedQuestion = (newQuestion + "\na. " + optionA + "\nb. " + optionB + "\nc. " + optionC + "\nd. " + optionD);
 
 
 
