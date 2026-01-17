@@ -23,6 +23,8 @@
 - Uses a random number generator to select test questions
 ### **user**
 - Gets the user input for multiple choice answer
+### **anotherUser**
+- Used for the adding question part, where the variable stores a valid input after crossing the error handler
 ### **percent**
 - Gets the final score in percentage
 ### **newQuestion & newAnswer**
@@ -31,12 +33,20 @@
 - Gets the user input when choosing part A or B for removing/adding questions
 ### **input & secondInput**
 - Gets the user input for the question they want to remove
-### **valid & validChecker**
+### **valid, anotherValid & validChecker & anotherValidChecker**
 - Boolean variables for the error handling
+### **ans**
+- User input, if it passes the error handling, then the value is given to another variable to continue the program
 ### **removeQ & removeA ArrayLists**
 - Duplicate ArrayLists for the question removal function
 ### **secondUser**
 - Similar to user, but only used for the indexing for removing a question
+### **optionA, optionB, optionC && optionD**
+- Gets user input for each multiple choice option, which is then concatenated into the full question
+### **completedQuestion**
+- Concateanted every part of the question, then adds to the question list.
+
+
 
 ## **Overall Logic:**
 - Comments on the code
@@ -46,4 +56,4 @@
 - 1/14: Rough outline and code didn't work at all. Needed many fixes
 - 1/15: Improved the logic and refined some parts
 - 1/16: Playtesting and checking for bugs
-- 1/17: Submitted the project
+- 1/17: Fixed adding, and removing questions. Then added an error handling system. Finally, submitted the project.
