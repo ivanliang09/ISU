@@ -31,6 +31,12 @@
 - Gets the user input when choosing part A or B for removing/adding questions
 ### **input & secondInput**
 - Gets the user input for the question they want to remove
+### **valid & validChecker**
+- Boolean variables for the error handling
+### **removeQ & removeA ArrayLists**
+- Duplicate ArrayLists for the question removal function
+### **secondUser**
+- Similar to user, but only used for the indexing for removing a question
 
 ## **Overall Logic:**
 - Comments on the code
