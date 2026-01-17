@@ -1,1 +1,34 @@
 # ISU
+
+## **Variables & Short Explanations:**
+
+### **questions ArrayList**
+- Stores all part A questions
+### **answers ArrayList**
+- Stores the correct answer (A–D) for each corresponding question in questions.
+### **moreQuestions ArrayList**
+- Stores all Part B questions with multiple-choice options.
+### **moreAnswers ArrayList**
+- Stores the correct answer (A–D) for each corresponding question in moreQuestions.
+### **Temporary ArrayLists (tempA, tempAnsA, tempB, tempAnsB)**
+-  Copies of the question and answer lists for each test attempt.
+- Random questions are selected from these lists and removed after being asked to avoid repetition.
+### **scoreA and scoreB**
+- Keep track of the number of correct answers in Part A and Part B, respectively.
+### **testEnded**
+- Boolean to indicate if the test should be terminated early because the user can no longer pass a section.
+### **choice**
+- Stores the user’s initial menu selection (1 = take test, 2 = admin login).
+### **randomNumber**
+- Uses a random number generator to select test questions
+### **user**
+- Gets the user input for multiple choice answer
+### **percent**
+- Gets the final score in percentage
+### **newQuestion & newAnswer**
+- Gets the new question and answer before adding it to the ArrayList
+### **input**
+- Gets the user input for the question they want to remove
+
+# **Overall Logic:**
+- Comments on the code
