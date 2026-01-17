@@ -41,7 +41,7 @@
 - Duplicate ArrayLists for the question removal function
 ### **secondUser**
 - Similar to user, but only used for the indexing for removing a question
-### **optionA, optionB, optionC && optionD**
+### **optionA, optionB, optionC & optionD**
 - Gets user input for each multiple choice option, which is then concatenated into the full question
 ### **completedQuestion**
 - Concateanted every part of the question, then adds to the question list.
