@@ -30,5 +30,5 @@
 ### **input**
 - Gets the user input for the question they want to remove
 
-# **Overall Logic:**
+## **Overall Logic:**
 - Comments on the code
