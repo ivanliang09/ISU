@@ -34,3 +34,10 @@
 
 ## **Overall Logic:**
 - Comments on the code
+
+## **Work Log**
+- 1/13: Brainstorming/Selecting the part
+- 1/14: Rough outline and code didn't work at all. Needed many fixes
+- 1/15: Improved the logic and refined some parts
+- 1/16: Playtesting and checking for bugs
+- 1/17: Submitted the project
