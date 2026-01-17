@@ -55,20 +55,36 @@ public class Main {
         moreQuestions.add("Pedestrian at crosswalk:\na. Slow\nb. Honk\nc. Pass behind\nd. Stop");
         moreAnswers.add('D');
 
-        ArrayList<String> tempA = new ArrayList<>(questions); // Create temporary duplicate ArrayLists
-        ArrayList<Character> tempAnsA = new ArrayList<>(answers);
-        ArrayList<String> tempB = new ArrayList<>(moreQuestions);
-        ArrayList<Character> tempAnsB = new ArrayList<>(moreAnswers);
+
 
         while (true) {
-            System.out.println("Welcome to the G1 Road Rules Application!"); // Welcome the user
-            System.out.println("1. Write a G1 Test"); // Choice 1
-            System.out.println("2. Login as admin"); // Choice 2
-            System.out.println("3. Exit");
-            int choice = sc.nextInt(); // Gets user input
-            sc.nextLine(); // Consume newline character
 
-            if (choice == 1) {
+            int choice = 0;
+            boolean validMenu = false;
+
+
+            while (!validMenu) { // Error handler
+                System.out.println("Welcome to the G1 Road Rules Application!"); // Welcome the user
+                System.out.println("1. Write a G1 Test"); // Choice 1
+                System.out.println("2. Login as admin"); // Choice 2
+                System.out.println("3. Exit"); // Choice 3
+                String input = sc.nextLine();
+
+                if (input.length() == 1 && input.charAt(0) >= '1' && input.charAt(0) <= '3') {
+                    choice = input.charAt(0);
+                    validMenu = true;
+                } else {
+                    System.out.println("Please enter a valid option!");
+                }
+            }
+
+            if (choice == '1') {
+
+                ArrayList<String> tempA = new ArrayList<>(questions); // Create temporary duplicate ArrayLists
+                ArrayList<Character> tempAnsA = new ArrayList<>(answers);
+                ArrayList<String> tempB = new ArrayList<>(moreQuestions);
+                ArrayList<Character> tempAnsB = new ArrayList<>(moreAnswers);
+
                 int scoreA = 0; // Set the beginning scores
                 int scoreB = 0;
                 boolean testEnded = false; // Boolean variable to check if passing a part A/B is still possible
@@ -78,13 +94,26 @@ public class Main {
                 for (int i = 0; i < 6 && !testEnded; i++) {
                     int randomNumber = (int) (Math.random() * tempA.size()); // Randomly generate a number to select test questions
                     System.out.println(tempA.get(randomNumber)); // Gets the question from the randomly generated number
-                    char user = sc.nextLine().toUpperCase().charAt(0); // User inputs the multiple choice answer
+
+                    char user = ' ';
+                    boolean valid = false;
+
+                    while (!valid) { // Error handler
+                        String ans = sc.nextLine().toUpperCase();
+                        if (ans.length() == 1 && ans.charAt(0) >= 'A' && ans.charAt(0) <= 'D') {
+                            user = ans.charAt(0);
+                            valid = true;
+                        } else {
+                            System.out.println("Please enter a valid option!");
+                        }
+                    }
                     if (user == tempAnsA.get(randomNumber)) {
                         System.out.println("Correct!");
                         scoreA++; // Adds score if correct
                     } else {
                         System.out.println("Incorrect...");
                     }
+
                     if (scoreA + (5 - i) < 4) { // Checks if it is still possible to pass after every question
                         System.out.println("Cannot pass Part A. Test ended.");
                         testEnded = true; // Causes the for loop to end
@@ -95,10 +124,24 @@ public class Main {
 
                 if (!testEnded) {
                     System.out.println("\n--- PART B ---"); // Part B is the same as Part A, but the score gets added to a different variable
+
                     for (int i = 0; i < 6 && !testEnded; i++) {
                         int randomNumber = (int) (Math.random() * tempB.size());
                         System.out.println(tempB.get(randomNumber));
-                        char user = sc.nextLine().toUpperCase().charAt(0);
+
+                        char user = ' ';
+                        boolean valid = false;
+
+                        while (!valid) { // Error handler
+                            String ans = sc.nextLine().toUpperCase();
+                            if (ans.length() == 1 && ans.charAt(0) >= 'A' && ans.charAt(0) <= 'D') {
+                                user = ans.charAt(0);
+                                valid = true;
+                            } else {
+                                System.out.println("Please enter a valid option!");
+                            }
+                        }
+
                         if (user == tempAnsB.get(randomNumber)) {
                             System.out.println("Correct!");
                             scoreB++;
@@ -128,24 +171,35 @@ public class Main {
                         System.out.println("FAIL\n");
                     }
                 }
-                
-            } else if (choice == 2) { // Administrator panel
+            } else if (choice == '2') { // Administrator panel
                 System.out.println("Enter password:");
                 if (!sc.nextLine().equals("password")) { // Password is "password"
                     System.out.println("Incorrect password.");
                 } else {
-                    System.out.println("a. Add question");
-                    System.out.println("b. Remove question");
-                    String adminChoice = sc.nextLine();
-                    
-                    if (adminChoice.equals("a")) {
+                    char adminChoice = ' ';
+                    boolean valid = false;
+                    while (!valid) { // Error handler
+                        System.out.println("a. Add question");
+                        System.out.println("b. Remove question");
+                        String ans =  sc.nextLine().toUpperCase();
+                        adminChoice = ans.charAt(0);
+
+                        if (ans.length() == 1 && ans.charAt(0) >= 'A' && ans.charAt(0) <= 'B') {
+                            adminChoice = ans.charAt(0);
+                            valid = true;
+                        } else {
+                            System.out.println("Invalid choice. Try again.");
+                        }
+                    }
+
+
+                    if (adminChoice == 'A') {
                         System.out.println("Enter the full question with multiple choice options (A-D). Use \"\\\\n\" to separate each option:"); // Asks user to input the question
                         System.out.println("For example: What should you do at a go light?\\\\na. Stop\\\\nb. Go\\\\nc. Wait\\\\nd. Honk"); // Demonstrates how a question should be added
 
                         String newQuestion = sc.nextLine();
                         System.out.println("Choose which part you want to add it to A/B: ");
                         String answer = sc.nextLine().toUpperCase();
-                        
                         if (answer.equals("A")) {
                             questions.add(newQuestion); // Question is added to the end of the questions Arraylist
 
@@ -166,42 +220,58 @@ public class Main {
                             System.out.println("Invalid");
                         }
 
-                    }
-                    
-                    if (adminChoice.equals("b")) { // Removing a question
-                        System.out.println("Enter the part you want to remove a question in A/B:");
-                        String answer = sc.nextLine().toUpperCase();
-                        if (answer.equals("A")) {
-                            System.out.println("Select the question you want to remove: ");
-                            for (int i = 0; i < questions.size(); i++) {
-                                System.out.println((i + 1) + ". " + questions.get(i)); // Prints out every question in part A
-                            }
-                            int input = sc.nextInt() - 1; // Gets user input, then subracts 1 to match the index value
-                            if (input >= 0 && input < questions.size()) { // Checks whether the question exists/is valid
-                                questions.remove(input); // Removes the question
-                                answers.remove(input); // Removes the answer to the question
+                    } else {
+                        char user = ' ';
+                        boolean validChecker = false;
+                        while (!validChecker) { // Error handler
+                            System.out.println("Enter the part you want to remove a question in A/B:");
+                            String answer = sc.nextLine().toUpperCase();
+                            if (answer.length() == 1 && answer.charAt(0) >= 'A' && answer.charAt(0) <= 'B') {
+                                user = answer.charAt(0);
+                                validChecker = true;
                             } else {
-                                System.out.println("Invalid");
-                            }
-                        } else if (answer.equals("B")) {
-                            System.out.println("Select the question you want to remove: ");
-                            for (int i = 0; i < moreQuestions.size(); i++) {
-                                System.out.println((i + 1) + ". " + moreQuestions.get(i)); // Prints out every question in part B
-                            }
-                            int secondInput = sc.nextInt() - 1; // Gets user input, then subracts 1 to match the index value
-                            if (secondInput >= 0 && secondInput < moreQuestions.size()) { // Checks whether the question exists/is valid
-                                questions.remove(moreQuestions); // Removes the question
-                                answers.remove(moreAnswers); // Removes the answer to the question
-                            } else {
-                                System.out.println("Invalid");
+                                System.out.println("Invalid choice. Try again.");
                             }
                         }
+
+                        ArrayList<String> removeQ; // Create a duplicate ArrayList
+                        ArrayList<Character> removeA;
+
+                        if (user == 'A') { // Set the duplicate to whichever part you want to use
+                            removeQ = questions;
+                            removeA = answers;
+                        } else {
+                            removeQ = moreQuestions;
+                            removeA = moreAnswers;
+                        }
+
+                        for (int i = 0; i < removeQ.size(); i++) {
+                            System.out.println((i + 1) + ". " + removeQ.get(i)); // Print out every question in that part
+                        }
+
+                        int secondUser = -1;
+                        boolean validCheckerTwo = false;
+
+                        while (!validCheckerTwo) { // Error handler
+                            System.out.println("Select the question you want to remove:");
+                            int answer = sc.nextInt();
+                            sc.nextLine();
+
+                            if (answer >= 1 && answer <= removeQ.size()) {
+                                secondUser = answer - 1;
+                                validCheckerTwo = true;
+                            } else {
+                                System.out.println("Invalid choice. Try again.");
+                            }
+                        }
+
+                        removeQ.remove(secondUser);
+                        removeA.remove(secondUser);
+                        System.out.println("Question removed successfully!");
                     }
                 }
-            } else if (choice == 3) {
+            } else if (choice == '3') { // Exit function
                 break;
-            } else {
-                System.out.println("Invalid choice"); // Did not choose 1 or 2 or 3
             }
         }
     }
